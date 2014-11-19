@@ -1,5 +1,2 @@
-source 'https://rubygems.org'
-
-gem 'heroku'
-gem 'sinatra'
-gem 'thin'
+source "https://rubygems.org"
+gem 'sinatra', '1.1.0'
