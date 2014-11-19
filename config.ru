@@ -1,2 +1,2 @@
-require './stree'
+require './hi'
 run Sinatra::Application
