@@ -1,7 +1,7 @@
 require 'sinatra'
-require 'Haml'
-require_relative './models/node.rb'
-require_relative './models/tree.rb'
+require 'haml'
+require './models/node.rb'
+require './models/tree.rb'
 
 get '/' do
   tree = BinaryTree.new(10)
@@ -15,7 +15,7 @@ get '/' do
 end
 
 post '/' do
-  params[:firstname] = "Mickey"
-  params[:lastname] = "Mouse"
-  haml :index
+  params["firstname"] = "Mickey"
+  params["lastname"] = "Mouse"
+  params.inspect
 end
