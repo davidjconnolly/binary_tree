@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Binary Tree
+  %body
+    %h1 Binary Tree
+    %p=params[:tree]
+    %form{ method: "POST" }
+      N1:
+      %input{:name => "firstname", :type => "text", :value => params[:firstname]}
+      %br
+      N2:
+      %input{:name => "lastname", :type => "text", :value => params[:lastname]}
+      %br
+      %input{:type => "submit", :value => "Submit"}
