@@ -1,15 +1,33 @@
 !!!
 %html
+
   %head
     %title Binary Tree
+
   %body
     %h1 Binary Tree
-    %p=params[:tree]
+
     %form{ method: "POST" }
-      N1:
-      %input{name: "firstname", :type => "text", :value => params["firstname"]}
+      Tree (CSV):&nbsp
+      %input{name: "tree", :type => "text", :value => params["tree"], style: "width:500px;"}
       %br
-      N2:
-      %input{name: "lastname", :type => "text", :value => params["lastname"]}
       %br
+
+      Node 1 Value:&nbsp&nbsp&nbsp
+      %input{name: "node1", :type => "text", :value => params["node1"], style: "width:25px;"}
+      %br
+
+      Node 2 Value:&nbsp&nbsp&nbsp
+      %input{name: "node2", :type => "text", :value => params["node2"], style: "width:25px;"}
+      %br
+      %br
+
       %input{:type => "submit", :value => "Submit"}
+
+    - if @lowest_common_ancestor
+      %p="Lowest Common Ancestor: #{@lowest_common_ancestor}"
+
+    %br
+    %br
+    %h3 Default Tree #{Tree::DEFAULT_TREE}
+    %img(src="/example_tree.png")

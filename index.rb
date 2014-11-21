@@ -3,19 +3,32 @@ require 'haml'
 require './models/node.rb'
 require './models/tree.rb'
 
-get '/' do
-  tree = BinaryTree.new(10)
-  20.times.each_with_index do |index|
-    tree.insert(rand(20)+1)
+before do
+  @lowest_common_ancestor = nil
+  params["tree"] ||= ""
+
+  if params["tree"].empty?
+    @node_ids = Tree::DEFAULT_TREE
+    params["tree"] = @node_ids.join(", ")
+  else
+    @node_ids = params["tree"].split(",").map(&:to_i).uniq
+    params["tree"] = @node_ids.join(", ")
   end
 
-  params[:tree] = tree.to_a
+  @tree = Tree.new(@node_ids)
+end
 
+get '/' do
   haml :index
 end
 
 post '/' do
-  params["firstname"] = "Mickey"
-  params["lastname"] = "Mouse"
-  params.inspect
+  if (@tree.nodes[params["node1"].to_i] && @tree.nodes[params["node2"].to_i])
+    @lowest_common_ancestor = Tree.lowest_common_ancestor(
+      @tree.nodes[params["node1"].to_i],
+      @tree.nodes[params["node2"].to_i]
+    ).id
+  end
+
+  haml :index
 end
